@@ -1,1 +1,116 @@
-# Rosaaalfi.github.io
+<h1 align="center">Hi, I'm Aniko</h1>
+
+<p align="center">
+  Developer • Gamer • Open Source Enthusiast
+</p>
+
+<p align="center">
+  <a href="https://github.com/Rosaaalfi">
+    <img src="https://komarev.com/ghpvc/?username=Rosaaalfi&label=Profile%20Views&color=0e75b6&style=flat" alt="profile views" />
+  </a>
+  <a href="https://github.com/Rosaaalfi?tab=followers">
+    <img src="https://img.shields.io/github/followers/Rosaaalfi?label=Followers&style=flat" alt="followers" />
+  </a>
+  <a href="https://github.com/Rosaaalfi">
+    <img src="https://img.shields.io/github/stars/Rosaaalfi?affiliations=OWNER&style=flat" alt="stars" />
+  </a>
+</p>
+
+---
+
+## About Me
+
+- Focused on game modification and development
+- Interested in automation, scripting, and backend systems
+- Passionate about open source projects
+- Always learning new technologies and improving workflows
+
+---
+
+## Tech Stack
+
+### Languages
+
+<p>
+  <img src="https://img.shields.io/badge/Rust-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/Java-000?style=for-the-badge&logo=openjdk" />
+  <img src="https://img.shields.io/badge/Kotlin-000?style=for-the-badge&logo=kotlin" />
+  <img src="https://img.shields.io/badge/JavaScript-000?style=for-the-badge&logo=javascript" />
+  <img src="https://img.shields.io/badge/TypeScript-000?style=for-the-badge&logo=typescript" />
+  <img src="https://img.shields.io/badge/Python-000?style=for-the-badge&logo=python" />
+</p>
+
+### Tools & Frameworks
+
+<p>
+  <img src="https://img.shields.io/badge/Node.js-000?style=for-the-badge&logo=node.js" />
+  <img src="https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git" />
+  <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github" />
+  <img src="https://img.shields.io/badge/Linux-000?style=for-the-badge&logo=linux" />
+  <img src="https://img.shields.io/badge/VSCode-000?style=for-the-badge&logo=visual-studio-code" />
+  <img src="https://img.shields.io/badge/IntelliJ_IDEA-000?style=for-the-badge&logo=intellij-idea" />
+</p>
+
+---
+
+<br>
+
+## GitHub Statistics
+
+<p align="center">
+  <img
+    width="80%"
+    src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Rosaaalfi&theme=github_dark"
+  />
+</p>
+
+<table align="center">
+<tr>
+<td width="50%" align="center">
+
+<img
+  width="100%"
+  src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Rosaaalfi&theme=github_dark"
+/>
+
+</td>
+
+<td width="50%" align="center">
+
+<img
+  width="100%"
+  src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Rosaaalfi&theme=github_dark"
+/>
+
+</td>
+</tr>
+</table>
+
+<br>
+
+---
+
+## Activity Graph
+
+<p align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Rosaaalfi&theme=github-compact&hide_border=true" />
+</p>
+
+---
+
+## Current Focus
+
+- Building and improving personal projects
+- Exploring game systems and modifications
+- Learning scalable backend architecture
+- Improving clean code and project structure
+
+---
+
+## Connect
+
+<p>
+  <a href="https://github.com/Rosaaalfi">
+    <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github" />
+  </a>
+</p>
