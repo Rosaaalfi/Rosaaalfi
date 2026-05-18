@@ -1,19 +1,15 @@
-<h1 align="center">Hi, I'm Aniko</h1>
+<h1 align="center">Hi, i'm Aniko</h1>
 
 <p align="center">
-  Developer • Gamer • Open Source Enthusiast
+  Rust Developer • JVM Enthusiast • Game Modification
 </p>
 
 <p align="center">
-  <a href="https://github.com/Rosaaalfi">
-    <img src="https://komarev.com/ghpvc/?username=Rosaaalfi&label=Profile%20Views&color=0e75b6&style=flat" alt="profile views" />
-  </a>
-  <a href="https://github.com/Rosaaalfi?tab=followers">
-    <img src="https://img.shields.io/github/followers/Rosaaalfi?label=Followers&style=flat" alt="followers" />
-  </a>
-  <a href="https://github.com/Rosaaalfi">
-    <img src="https://img.shields.io/github/stars/Rosaaalfi?affiliations=OWNER&style=flat" alt="stars" />
-  </a>
+  <img src="https://img.shields.io/github/followers/Rosaaalfi?style=for-the-badge&logo=github&label=Followers&color=000000" />
+
+  <img src="https://img.shields.io/github/stars/Rosaaalfi?style=for-the-badge&logo=github&label=Stars&color=000000" />
+
+  <img src="https://komarev.com/ghpvc/?username=Rosaaalfi&style=for-the-badge&color=000000" />
 </p>
 
 ---
@@ -109,8 +105,18 @@
 
 ## Connect
 
-<p>
+## Connect
+
+<p align="center">
   <a href="https://github.com/Rosaaalfi">
-    <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github" />
+    <img src="https://img.shields.io/badge/GitHub-Rosaaalfi-000?style=for-the-badge&logo=github" />
+  </a>
+
+  <a href="mailto:anikosyahraramadhani@proton.me">
+    <img src="https://img.shields.io/badge/Email-ProtonMail-000?style=for-the-badge&logo=protonmail" />
+  </a>
+
+  <a href="https://discord.com/users/non_productive_person">
+    <img src="https://img.shields.io/badge/Discord-non__productive__person-000?style=for-the-badge&logo=discord" />
   </a>
 </p>
