@@ -105,8 +105,6 @@
 
 ## Connect
 
-## Connect
-
 <p align="center">
   <a href="https://github.com/Rosaaalfi">
     <img src="https://img.shields.io/badge/GitHub-Rosaaalfi-000?style=for-the-badge&logo=github" />
