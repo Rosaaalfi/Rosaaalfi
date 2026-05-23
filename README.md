@@ -7,8 +7,8 @@
 <p align="center">
   <img src="https://img.shields.io/github/followers/Rosaaalfi?style=for-the-badge&logo=github&label=Followers&color=000000" />
 
-  <img src="https://img.shields.io/github/stars/Rosaaalfi?style=for-the-badge&logo=github&label=Stars&color=000000" />
-
+  <img src="https://img.shields.io/github/stars/Rosaaalfi/MMOBlock-Rework?style=for-the-badge&logo=github&label=Stars&color=000000" />
+  
   <img src="https://komarev.com/ghpvc/?username=Rosaaalfi&style=for-the-badge&color=000000" />
 </p>
 
