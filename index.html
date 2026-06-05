@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="scroll-smooth" lang="en">
+<html lang="en">
 <meta charset="UTF-8">
 <meta content="width=device-width,initial-scale=1" name="viewport">
 <link href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHNoYXBlLXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiB0ZXh0LXJlbmRlcmluZz0iZ2VvbWV0cmljUHJlY2lzaW9uIiBpbWFnZS1yZW5kZXJpbmc9Im9wdGltaXplUXVhbGl0eSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIHZpZXdCb3g9IjAgMCA1MTIgNDk5LjM2OCI+PHBhdGggZmlsbD0iIzNmOGJmNiIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMjU2LjAwMyAwQzExNC41NTUgMCAwIDExNC41NTUgMCAyNTYuMDAzYzAgMTEzLjI4NiA3My4yOCAyMDguOTYxIDE3NS4wMzggMjQyLjg2NSAxMi43OTYgMi4yNDcgMTcuNTg2LTUuNDMzIDE3LjU4Ni0xMi4xNTMgMC02LjA3Ny0uMzA5LTI2LjIyNS0uMzA5LTQ3LjY4Ni02NC4zMTMgMTEuODQ0LTgwLjk0MS0xNS42NzQtODYuMDU4LTMwLjA1NS0yLjg5Ni03LjM3LTE1LjM1OS0zMC4xLTI2LjI2OS0zNi4xNzctOC45NDgtNC44MDgtMjEuNzUyLTE2LjY1Mi0uMzEtMTYuOTYxIDIwLjE2OC0uMzA5IDM0LjU3NCAxOC41NjQgMzkuMzgyIDI2LjI0NCAyMy4wMzggMzguNzMyIDU5LjgzOSAyNy44MjggNzQuNTU1IDIxLjEwMSAyLjIyNy0xNi42MjcgOC45NDctMjcuODI4IDE2LjMxOC0zNC4yMzktNTYuOTY4LTYuMzg2LTExNi40NjctMjguNDcxLTExNi40NjctMTI2LjM5OSAwLTI3LjgyNyA5LjkwNy01MC44NjYgMjYuMjI1LTY4Ljc4Ny0yLjU2Mi02LjQxLTExLjUxLTMyLjY1NSAyLjU2Mi02Ny44NTMgMCAwIDIxLjQzNi02LjcyIDcwLjQwOSAyNi4yNDQgMjAuNDgzLTUuNzY3IDQyLjIyNy04LjYzOCA2My45OTgtOC42MzggMjEuNzUxIDAgNDMuNTIgMi44OTYgNjMuOTk3IDguNjM4IDQ4Ljk3My0zMy4yNzkgNzAuMzktMjYuMjQ0IDcwLjM5LTI2LjI0NCAxNC4wOSAzNS4xOTIgNS4xMTcgNjEuNDQzIDIuNTYyIDY3Ljg1MyAxNi4zMTggMTcuOTIxIDI2LjI0NCA0MC42MjUgMjYuMjQ0IDY4Ljc4NyAwIDk4LjIzNy01OS44NCAxMTkuOTg4LTExNi44MDEgMTI2LjM5OSA5LjI4MiA4LjAxNCAxNy4yNzcgMjMuMzczIDE3LjI3NyA0Ny4zNzEgMCAzNC4yMzgtLjMwOSA2MS43NTEtLjMwOSA3MC4zODkgMCA2LjcyMSA0LjgwOCAxNC43MzUgMTcuNTg2IDEyLjE3OUM0MzguNzM5IDQ2NC45NjQgNTEyIDM2OC45NTUgNTEyIDI1Ni4wMDNDNTEyIDExNC41NTUgMzk3LjQ0NSAwIDI1Ni4wMDMgMHoiLz48L3N2Zz4=" rel="icon" type="image/svg+xml">
@@ -8,550 +8,539 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
-body, html {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  font-family: Inter, sans-serif;
-}
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body { margin: 0; padding: 0; font-family: Inter, sans-serif; }
 ::-webkit-scrollbar { display: none !important; width: 0 !important; }
-.horizontal-viewport, body, html { scrollbar-width: none !important; -ms-overflow-style: none !important; }
+html, body, .hv { scrollbar-width: none !important; -ms-overflow-style: none !important; }
 
-.panel-content {
-  width: 100%;
-  max-width: 64rem;
+/* ─── DESKTOP: horizontal paging ─── */
+@media (min-width: 768px) {
+  html, body { height: 100%; overflow: hidden; }
+
+  .hv {
+    width: 100vw; height: 100vh;
+    overflow-x: scroll; overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+  }
+  .hc {
+    display: flex;
+    /* 4 panels: home work about contact */
+    width: 400vw; height: 100vh;
+  }
+  .panel {
+    width: 100vw; height: 100vh;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    display: flex; flex-direction: column; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  /* mobile-only nav dots hidden on desktop */
+  .mob-nav { display: none !important; }
+}
+
+/* ─── MOBILE: vertical paging ─── */
+@media (max-width: 767px) {
+  html {
+    height: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  body { min-height: 100%; }
+  .hv, .hc { display: contents; }
+
+  .panel {
+    width: 100%;
+    min-height: 100svh; /* use svh so address bar doesn't clip */
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    display: flex; flex-direction: column; justify-content: flex-start;
+    overflow: visible; position: relative;
+    padding-top: 4rem; /* space for fixed nav */
+    padding-bottom: 1.5rem;
+  }
+
+  /* hide desktop nav links, show mobile nav dots */
+  nav .desk-links { display: none !important; }
+  .mob-nav {
+    display: flex !important;
+    position: fixed; top: 50%; right: 0.75rem;
+    transform: translateY(-50%);
+    flex-direction: column; gap: 6px;
+    z-index: 200;
+  }
+  .mob-nav button {
+    width: 30px; height: 30px; border-radius: 50%;
+    background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.15);
+    color: #fff; font-size: 13px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .mob-nav button:hover { background: rgba(59,130,246,0.5); }
+  .mob-nav button.active { background: rgba(59,130,246,0.7); }
+}
+
+/* ─── SHARED LAYOUT ─── */
+nav {
+  position: fixed; top: 0; width: 100%; z-index: 100;
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(12px);
+  background: rgba(2,6,23,0.85);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.pc { /* panel content */
+  width: 100%; max-width: 62rem;
   margin: 0 auto;
-  padding: 0 1.5rem;
-  box-sizing: border-box;
+  padding: 0 1.25rem;
 }
 
-nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.25rem 2rem; }
-footer, header, section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  box-sizing: border-box;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Tag badge */
+/* ─── TAGS ─── */
 .tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  padding: 2px 8px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #94a3b8;
-  white-space: nowrap;
+  display: inline-flex; align-items: center;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.04em;
+  padding: 2px 7px; border-radius: 999px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  color: #94a3b8; white-space: nowrap;
 }
 .tag.java { background: rgba(240,100,30,0.12); border-color: rgba(240,100,30,0.25); color: #fb923c; }
 .tag.rust { background: rgba(210,80,40,0.12); border-color: rgba(210,80,40,0.25); color: #f87171; }
-.tag.go { background: rgba(0,173,216,0.12); border-color: rgba(0,173,216,0.25); color: #38bdf8; }
-.tag.mc { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.2); color: #4ade80; }
-.tag.web { background: rgba(99,102,241,0.12); border-color: rgba(99,102,241,0.25); color: #a78bfa; }
-.tag.waf { background: rgba(234,179,8,0.12); border-color: rgba(234,179,8,0.25); color: #fbbf24; }
+.tag.go   { background: rgba(0,173,216,0.12);  border-color: rgba(0,173,216,0.25);  color: #38bdf8; }
+.tag.mc   { background: rgba(34,197,94,0.1);   border-color: rgba(34,197,94,0.2);   color: #4ade80; }
+.tag.web  { background: rgba(99,102,241,0.12); border-color: rgba(99,102,241,0.25); color: #a78bfa; }
+.tag.waf  { background: rgba(234,179,8,0.12);  border-color: rgba(234,179,8,0.25);  color: #fbbf24; }
 
-/* Project card glow */
-.project-card {
-  position: relative;
-  border-radius: 1.5rem;
+/* ─── PROJECT CARD ─── */
+.pcard {
+  position: relative; border-radius: 1.25rem;
   border: 1px solid rgb(30,41,59);
-  background: rgba(15,23,42,0.6);
-  padding: 1.5rem;
-  transition: border-color 0.4s, transform 0.3s;
+  background: rgba(15,23,42,0.7);
+  padding: 1.1rem;
+  transition: border-color 0.3s, transform 0.25s;
   overflow: hidden;
 }
-.project-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 1.5rem;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
+.pcard::before {
+  content: ''; position: absolute; inset: 0;
+  border-radius: 1.25rem; opacity: 0;
+  transition: opacity 0.3s; pointer-events: none;
 }
-.project-card.blue::before { background: radial-gradient(ellipse at top left, rgba(59,130,246,0.08) 0%, transparent 70%); }
-.project-card.red::before  { background: radial-gradient(ellipse at top left, rgba(239,68,68,0.07) 0%, transparent 70%); }
-.project-card:hover { border-color: rgb(51,65,85); transform: translateY(-2px); }
-.project-card:hover::before { opacity: 1; }
+.pcard.blue::before { background: radial-gradient(ellipse at top left, rgba(59,130,246,0.09) 0%, transparent 65%); }
+.pcard.red::before  { background: radial-gradient(ellipse at top left, rgba(239,68,68,0.08) 0%, transparent 65%); }
+.pcard:hover { border-color: rgb(51,65,85); transform: translateY(-2px); }
+.pcard:hover::before { opacity: 1; }
 
-.project-icon-wrap {
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
+/* ─── FEAT ROW ─── */
+.fr { display: flex; align-items: flex-start; gap: 7px; font-size: 0.75rem; color: #64748b; line-height: 1.4; }
+.fr svg { flex-shrink: 0; margin-top: 1px; }
 
-/* Animated dots for hero */
-.dot-grid {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(rgba(59,130,246,0.15) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
-  pointer-events: none;
-}
-
-/* Skills pill */
-.skill-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.78rem;
-  font-weight: 500;
-  padding: 5px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.08);
-  background: rgba(255,255,255,0.04);
-  color: #94a3b8;
+/* ─── SKILL PILL ─── */
+.sp {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 0.75rem; font-weight: 500; padding: 4px 10px;
+  border-radius: 999px; border: 1px solid rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.04); color: #94a3b8;
   transition: all 0.2s;
 }
-.skill-pill:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; border-color: rgba(255,255,255,0.15); }
+.sp:hover { background: rgba(255,255,255,0.08); color: #e2e8f0; }
 
-/* Status dot */
-.status-dot {
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
+/* ─── STATUS DOT ─── */
+.sdot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #22c55e; flex-shrink: 0;
   box-shadow: 0 0 0 3px rgba(34,197,94,0.2);
-  animation: pulse-dot 2s ease-in-out infinite;
-  flex-shrink: 0;
+  animation: pdot 2s ease-in-out infinite;
 }
-@keyframes pulse-dot {
-  0%, 100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
-  50% { box-shadow: 0 0 0 6px rgba(34,197,94,0.08); }
-}
-
-/* Contact form */
-.input-field {
-  width: 100%;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 0.9rem;
-  color: #e2e8f0;
-  outline: none;
-  transition: border-color 0.2s, background 0.2s;
-  box-sizing: border-box;
-  font-family: inherit;
-  resize: none;
-}
-.input-field::placeholder { color: #475569; }
-.input-field:focus { border-color: rgba(59,130,246,0.5); background: rgba(59,130,246,0.04); }
-
-/* Feature row in project card */
-.feat-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: #64748b;
-  line-height: 1.4;
-}
-.feat-row svg { flex-shrink: 0; margin-top: 1px; }
-
-@media (min-width: 768px) {
-  body { overflow: hidden; }
-  .horizontal-viewport {
-    width: 100vw; height: 100vh;
-    overflow-x: auto; overflow-y: hidden;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-  }
-  .horizontal-container { display: flex; width: 500vw; height: 100vh; }
-  footer, header, section {
-    width: 100vw; height: 100vh;
-    flex-shrink: 0; scroll-snap-align: start;
-  }
-  .section-nav-btn { display: none !important; }
+@keyframes pdot {
+  0%,100% { box-shadow: 0 0 0 3px rgba(34,197,94,0.2); }
+  50%      { box-shadow: 0 0 0 6px rgba(34,197,94,0.07); }
 }
 
+/* ─── DOT GRID BG ─── */
+.dotgrid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(59,130,246,0.13) 1px, transparent 1px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+}
+
+/* ─── INPUT ─── */
+.ifield {
+  width: 100%; background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.1); border-radius: 9px;
+  padding: 10px 14px; font-size: 0.85rem; color: #e2e8f0;
+  outline: none; transition: border-color 0.2s; font-family: inherit; resize: none;
+}
+.ifield::placeholder { color: #475569; }
+.ifield:focus { border-color: rgba(59,130,246,0.5); }
+
+/* ─── SECTION DIVIDER ─── */
+.sdiv {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 1.25rem;
+}
+.sdiv .ln { flex-grow: 1; height: 1px; background: rgb(30,41,59); }
+.sdiv span { font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #475569; white-space: nowrap; }
+
+/* ─── MOBILE-SPECIFIC OVERRIDES ─── */
 @media (max-width: 767px) {
-  html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
-  body { overflow-y: auto; overflow-x: hidden; height: 100vh; }
-  .horizontal-container, .horizontal-viewport { display: block; width: 100%; height: auto; }
-  footer, header, section {
-    width: 100vw; height: 100vh;
-    scroll-snap-align: start; scroll-snap-stop: always;
-  }
-  .hero-panel .panel-content { padding-top: 5rem; }
-  nav .space-x-8 { display: none !important; }
-  .section-nav-btn {
-    position: fixed; top: 50%; right: 1.1rem;
-    transform: translateY(-50%);
-    z-index: 101; display: flex; flex-direction: column;
-  }
-  .section-nav-btn button {
-    width: 2.1rem; height: 2.1rem; border-radius: 50%;
-    background: rgba(0,0,0,.4); color: #fff;
-    border: none; margin-bottom: .15rem;
-  }
-  .projects-grid { grid-template-columns: 1fr !important; }
+  /* Hero panel */
+  #home .pc { padding-top: 0.25rem; }
+  #home h2 { font-size: 1.9rem !important; line-height: 1.15; margin-bottom: 0.6rem; }
+  #home p.desc { font-size: 0.875rem; margin-bottom: 0.75rem; }
+
+  /* Work panel: single column, scrollable */
+  #work { justify-content: flex-start; overflow-y: auto; }
+  #work .pc { padding-top: 0.25rem; }
+  #workGrid { grid-template-columns: 1fr !important; gap: 0.75rem !important; }
+
+  /* Card: compact but not broken */
+  .pcard { padding: 0.9rem; }
+  /* Hide feat-list on mobile to save space */
+  .feat-list { display: none !important; }
+  /* Card header: allow subtitle to be inline not wrapping weirdly */
+  .pcard .card-header-info { min-width: 0; }
+  .pcard .card-subtitle { white-space: normal !important; }
+
+  /* About: single column */
+  #about .two-col { display: flex !important; flex-direction: column; gap: 1rem !important; }
+  #about .stats-col { flex-direction: row !important; flex-wrap: wrap; gap: 0.5rem; margin-top: 0; }
+  #about .stat-box { flex: 1 1 calc(50% - 0.25rem) !important; min-width: 130px; }
+
+  /* Contact: single col */
+  #contact .two-col { display: flex !important; flex-direction: column; gap: 1rem !important; }
+  #contact .left-info { margin-bottom: 0; }
+  #contact h4 { font-size: 1.4rem !important; }
+
+  /* footer */
+  .foot-bar { flex-direction: column !important; gap: 4px; text-align: center; }
+}
+
+/* Very small (≤400px) */
+@media (max-width: 400px) {
+  nav { padding: 0.65rem 0.9rem; }
+  .pc { padding: 0 0.9rem; }
+  #home h2 { font-size: 1.6rem !important; }
+  .pcard { padding: 0.75rem; border-radius: 0.85rem; }
+  #about .stat-box { flex: 1 1 100% !important; }
+  #contact h4 { font-size: 1.15rem !important; }
+  .ifield { padding: 8px 10px !important; font-size: 0.8rem !important; }
 }
 </style>
 
 <body class="antialiased bg-slate-950 text-slate-200">
 
-<!-- NAV -->
-<nav class="backdrop-blur-md bg-slate-950/80 border-b border-slate-800/50 p-6">
-  <div class="flex items-center justify-between max-w-5xl mx-auto">
-    <h1 class="text-white text-xl font-bold tracking-tighter">CHYXEL.DEV</h1>
-    <div class="font-medium space-x-8 text-sm">
-      <a class="transition hover:text-white text-slate-400" href="#work">Work</a>
-      <a class="transition hover:text-white text-slate-400" href="#about">About</a>
-      <a class="transition bg-white font-semibold hover:bg-slate-200 px-5 py-2.5 rounded-full text-slate-950" href="#contact">Contact</a>
+<!-- ── FIXED NAV ── -->
+<nav>
+  <div style="display:flex;align-items:center;justify-content:space-between;max-width:62rem;margin:0 auto;">
+    <h1 style="color:#fff;font-size:1.1rem;font-weight:700;letter-spacing:-0.03em;margin:0">CHYXEL.DEV</h1>
+    <div class="desk-links" style="display:flex;align-items:center;gap:1.5rem;font-size:0.85rem;font-weight:500;">
+      <a class="nav-link" href="#" data-idx="0" style="color:#94a3b8;text-decoration:none;transition:color 0.2s">Home</a>
+      <a class="nav-link" href="#" data-idx="1" style="color:#94a3b8;text-decoration:none;transition:color 0.2s">Work</a>
+      <a class="nav-link" href="#" data-idx="2" style="color:#94a3b8;text-decoration:none;transition:color 0.2s">About</a>
+      <a class="nav-link" href="#" data-idx="3" style="background:#fff;color:#020617;padding:6px 18px;border-radius:999px;font-weight:600;text-decoration:none;transition:background 0.2s">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- MOBILE NAV DOTS -->
-<div class="section-nav-btn">
-  <button onclick="scrollToSection('home')" title="Home">⌂</button>
-  <button onclick="scrollToSection('work')" title="Work">◈</button>
-  <button onclick="scrollToSection('about')" title="About">◉</button>
-  <button onclick="scrollToSection('contact')" title="Contact">✉</button>
+<!-- ── MOBILE SIDE NAV DOTS ── -->
+<div class="mob-nav" id="mobNav">
+  <button data-idx="0" title="Home">⌂</button>
+  <button data-idx="1" title="Work">◈</button>
+  <button data-idx="2" title="About">◉</button>
+  <button data-idx="3" title="Contact">✉</button>
 </div>
 
-<div class="horizontal-viewport" id="horizontal-scroll">
-  <div class="horizontal-container">
+<!-- ── PANELS WRAPPER ── -->
+<div class="hv" id="hv">
+<div class="hc">
 
-    <!-- HERO -->
-    <header class="hero-panel" id="home">
-      <div class="dot-grid"></div>
-      <div class="panel-content relative z-10">
-        <div class="flex items-center gap-2 mb-6">
-          <div class="status-dot"></div>
-          <span class="text-xs text-slate-500 font-medium tracking-wide">Available for projects</span>
-        </div>
-        <h2 class="text-white font-bold tracking-tighter leading-tight mb-6 md:text-7xl sm:text-5xl text-4xl">
-          I'm <span class="text-blue-500">Aniko.</span><br>
-          Building robust<br>systems &amp; tools.
-        </h2>
-        <p class="text-slate-400 font-light leading-relaxed max-w-xl sm:text-xl text-lg mb-10">
-          Software developer specializing in low-level programming, game modding, and full-stack development. I enjoy turning complex problems into elegant code.
-        </p>
-        <div class="flex flex-wrap gap-2">
-          <span class="skill-pill">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>Java
-          </span>
-          <span class="skill-pill">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Rust
-          </span>
-          <span class="skill-pill">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>Go
-          </span>
-          <span class="skill-pill">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>Full-Stack
-          </span>
-          <span class="skill-pill">
-            <svg width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>Minecraft Plugins
-          </span>
-        </div>
-      </div>
-    </header>
+<!-- ══════════════════════ PANEL 0: HOME ══════════════════════ -->
+<div class="panel" id="home">
+  <div class="dotgrid"></div>
+  <div class="pc" style="position:relative;z-index:1">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:1rem">
+      <div class="sdot"></div>
+      <span style="font-size:0.72rem;color:#4b5563;font-weight:500;letter-spacing:0.04em">Available for projects</span>
+    </div>
 
-    <!-- WORK -->
-    <section id="work">
-      <div class="panel-content">
-        <div class="flex items-center gap-4 mb-10">
-          <div class="bg-slate-800 flex-grow h-px"></div>
-          <h3 class="uppercase tracking-widest font-semibold text-center text-slate-500 text-sm">Featured Projects</h3>
-          <div class="bg-slate-800 flex-grow h-px"></div>
-        </div>
+    <h2 style="color:#fff;font-weight:700;letter-spacing:-0.04em;line-height:1.1;margin:0 0 0.85rem">
+      I'm <span style="color:#3b82f6">Aniko.</span><br>
+      Building robust<br>systems &amp; tools.
+    </h2>
 
-        <div class="projects-grid grid gap-6 md:grid-cols-2">
+    <p class="desc" style="color:#94a3b8;font-weight:300;line-height:1.65;max-width:38rem;margin:0 0 1.25rem;font-size:1rem">
+      Software developer specializing in low-level programming, game modding, and full-stack development. I enjoy turning complex problems into elegant code.
+    </p>
 
-          <!-- MMOBlock -->
-          <div class="project-card blue">
-            <div class="flex items-start gap-4 mb-5">
-              <div class="project-icon-wrap" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2)">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
-                  <rect x="2" y="7" width="20" height="14" rx="2"/>
-                  <path d="M16 7V5a2 2 0 00-4 0v2"/>
-                  <path d="M12 12v4"/>
-                  <path d="M10 14h4"/>
-                </svg>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap mb-1">
-                  <h4 class="text-white font-bold text-lg leading-tight">MMOBlock</h4>
-                  <span class="tag mc">Minecraft</span>
-                </div>
-                <p class="text-slate-500 text-xs">Plugin · Paper &amp; Folia</p>
-              </div>
-              <a href="https://github.com/Rosaaalfi/MMOBlock-Rework" target="_blank" rel="noopener"
-                 class="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/10"
-                 title="View on GitHub">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" class="text-slate-400">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
-                </svg>
-              </a>
-            </div>
-
-            <p class="text-slate-400 text-sm leading-relaxed mb-5">
-              Modular Minecraft plugin for Paper & Folia servers. Rework from scratch with full NMS abstraction layers supporting MC 1.19.4–1.21.x, custom block systems, multi-database, and a clean developer API.
-            </p>
-
-            <div class="space-y-2 mb-5">
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Cross-version NMS adapter (1.19.4 – 1.21.x) + Folia multi-thread safe</span>
-              </div>
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>YAML custom blocks, advanced mining, hologram, 3D model integrations</span>
-              </div>
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Multi-database support: H2 / MySQL / Redis + developer-friendly API</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="tag java">Java</span>
-              <span class="tag mc">Paper API</span>
-              <span class="tag mc">Folia</span>
-              <span class="tag">NMS</span>
-              <span class="tag">Gradle</span>
-              <span class="tag">Maven Central</span>
-            </div>
-
-            <div class="flex items-center justify-between pt-4 border-t border-slate-800/60">
-              <div class="flex items-center gap-3 text-xs text-slate-500">
-                <span class="flex items-center gap-1">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                  2 stars
-                </span>
-                <span>v3.0.5</span>
-              </div>
-              <a href="https://github.com/Rosaaalfi/MMOBlock-Rework" target="_blank" rel="noopener"
-                 class="text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium flex items-center gap-1">
-                View Source
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-
-          <!-- Genoviza Studio Marketplace -->
-          <div class="project-card red">
-            <div class="flex items-start gap-4 mb-5">
-              <div class="project-icon-wrap" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2)">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2">
-                  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-                  <line x1="3" y1="6" x2="21" y2="6"/>
-                  <path d="M16 10a4 4 0 01-8 0"/>
-                </svg>
-              </div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center gap-2 flex-wrap mb-1">
-                  <h4 class="text-white font-bold text-lg leading-tight">Genoviza Studio</h4>
-                  <span class="tag web">Web App</span>
-                </div>
-                <p class="text-slate-500 text-xs">Marketplace · Rust Fullstack</p>
-              </div>
-              <a href="https://genovizastudio.com" target="_blank" rel="noopener"
-                 class="flex-shrink-0 w-8 h-8 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-colors border border-white/10"
-                 title="Visit site">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-slate-400">
-                  <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
-                  <polyline points="15 3 21 3 21 9"/>
-                  <line x1="10" y1="14" x2="21" y2="3"/>
-                </svg>
-              </a>
-            </div>
-
-            <p class="text-slate-400 text-sm leading-relaxed mb-5">
-              Full-stack marketplace web app built entirely in Rust — frontend with WebAssembly (Yew), backend with Actix-Web, protected by an Anubis WAF layer written in Go for bot & DDoS mitigation.
-            </p>
-
-            <div class="space-y-2 mb-5">
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Rust + WebAssembly frontend via Yew framework — zero JS overhead</span>
-              </div>
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Actix-Web REST backend with high-performance async request handling</span>
-              </div>
-              <div class="feat-row">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Anubis WAF (Go) — bot mitigation, proof-of-work challenge, rate limiting</span>
-              </div>
-            </div>
-
-            <div class="flex flex-wrap gap-1.5 mb-5">
-              <span class="tag rust">Rust</span>
-              <span class="tag rust">Yew (WASM)</span>
-              <span class="tag rust">Actix-Web</span>
-              <span class="tag go">Go</span>
-              <span class="tag waf">Anubis WAF</span>
-              <span class="tag web">Fullstack</span>
-            </div>
-
-            <div class="flex items-center justify-between pt-4 border-t border-slate-800/60">
-              <div class="flex items-center gap-1.5 text-xs">
-                <div class="w-2 h-2 rounded-full bg-green-400"></div>
-                <span class="text-slate-500">Live Production</span>
-              </div>
-              <a href="https://genovizastudio.com" target="_blank" rel="noopener"
-                 class="text-xs text-red-400 hover:text-red-300 transition-colors font-medium flex items-center gap-1">
-                Visit Site
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </a>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about">
-      <div class="panel-content">
-        <div class="flex items-center gap-4 mb-10">
-          <div class="bg-slate-800 flex-grow h-px"></div>
-          <h3 class="uppercase tracking-widest font-semibold text-center text-slate-500 text-sm">About Me</h3>
-          <div class="bg-slate-800 flex-grow h-px"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <p class="text-slate-300 text-lg leading-relaxed mb-6">
-              I'm <span class="text-white font-semibold">Aniko</span>, a self-driven developer who loves working at the intersection of systems programming and product engineering.
-            </p>
-            <p class="text-slate-400 leading-relaxed mb-8">
-              From low-level NMS hacking in Minecraft plugins to building production-grade Rust full-stack applications with WAF protection — I enjoy the full spectrum. I care about performance, correctness, and building things that actually ship.
-            </p>
-            <div class="flex flex-wrap gap-2">
-              <span class="skill-pill">☕ Java / JVM</span>
-              <span class="skill-pill">🦀 Rust</span>
-              <span class="skill-pill">🐹 Go</span>
-              <span class="skill-pill">⛏️ Minecraft Plugin Dev</span>
-              <span class="skill-pill">🌐 WebAssembly</span>
-              <span class="skill-pill">🗄️ MySQL / Redis</span>
-              <span class="skill-pill">🔒 WAF / Security</span>
-              <span class="skill-pill">📦 Gradle / Maven</span>
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
-              <div class="text-2xl font-bold text-white mb-1">2</div>
-              <div class="text-slate-400 text-sm">Major projects shipped</div>
-            </div>
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
-              <div class="text-2xl font-bold text-white mb-1">1.19 → 1.21</div>
-              <div class="text-slate-400 text-sm">Minecraft version coverage in MMOBlock</div>
-            </div>
-            <div class="rounded-2xl border border-slate-800 bg-slate-900/40 p-5">
-              <div class="flex items-center gap-2 mb-1">
-                <div class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></div>
-                <div class="text-sm font-semibold text-white">Available for freelance & collab</div>
-              </div>
-              <div class="text-slate-400 text-sm">Open to plugin dev, Rust/Go backend, or fullstack projects</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <footer id="contact">
-      <div class="panel-content">
-        <div class="flex items-center gap-4 mb-10">
-          <div class="bg-slate-800 flex-grow h-px"></div>
-          <h3 class="uppercase tracking-widest font-semibold text-center text-slate-500 text-sm">Get In Touch</h3>
-          <div class="bg-slate-800 flex-grow h-px"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-12 items-start">
-          <div>
-            <h4 class="text-white text-3xl font-bold tracking-tight mb-4">Let's build something<br><span class="text-blue-500">together.</span></h4>
-            <p class="text-slate-400 leading-relaxed mb-8">
-              Whether it's a Minecraft plugin, a Rust backend, or an ambitious full-stack project — I'm open to collaboration, contracts, and interesting problems.
-            </p>
-            <div class="space-y-3">
-              <a href="https://github.com/Rosaaalfi" target="_blank" rel="noopener"
-                 class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group">
-                <div class="w-9 h-9 rounded-xl bg-slate-800 group-hover:bg-slate-700 flex items-center justify-center transition-colors">
-                  <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                </div>
-                <span class="text-sm font-medium">github.com/Rosaaalfi</span>
-              </a>
-              <a href="https://genovizastudio.com" target="_blank" rel="noopener"
-                 class="flex items-center gap-3 text-slate-400 hover:text-white transition-colors group">
-                <div class="w-9 h-9 rounded-xl bg-slate-800 group-hover:bg-slate-700 flex items-center justify-center transition-colors">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
-                </div>
-                <span class="text-sm font-medium">genovizastudio.com</span>
-              </a>
-            </div>
-          </div>
-
-          <form class="space-y-4" onsubmit="handleContact(event)">
-            <input type="text" placeholder="Your name" class="input-field" required>
-            <input type="email" placeholder="Email address" class="input-field" required>
-            <textarea placeholder="Tell me about your project..." class="input-field" rows="4" required></textarea>
-            <button type="submit"
-              class="w-full bg-blue-600 hover:bg-blue-500 text-white font-semibold py-3 px-6 rounded-xl transition-colors text-sm">
-              Send Message →
-            </button>
-          </form>
-        </div>
-
-        <div class="mt-16 pt-8 border-t border-slate-800/50 flex items-center justify-between text-slate-600 text-xs">
-          <span>© 2026 Aniko · CHYXEL.DEV</span>
-          <span>Built with ❤️ &amp; Rust</span>
-        </div>
-      </div>
-    </footer>
-
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <span class="sp">☕ Java</span>
+      <span class="sp">🦀 Rust</span>
+      <span class="sp">🐹 Go</span>
+      <span class="sp">🌐 Full-Stack</span>
+      <span class="sp">⛏️ Minecraft Plugins</span>
+      <span class="sp">🔒 WAF / Security</span>
+    </div>
   </div>
 </div>
 
+<!-- ══════════════════════ PANEL 1: WORK ══════════════════════ -->
+<div class="panel" id="work">
+  <div class="pc">
+    <div class="sdiv"><div class="ln"></div><span>Featured Projects</span><div class="ln"></div></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem" id="workGrid">
+
+      <!-- MMOBlock -->
+      <div class="pcard blue">
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:0.75rem">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-4 0v2"/><path d="M12 12v4M10 14h4"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px">
+              <span style="color:#fff;font-weight:700;font-size:0.95rem">MMOBlock</span>
+              <span class="tag mc">Minecraft</span>
+            </div>
+            <span style="color:#475569;font-size:0.7rem;white-space:nowrap">Plugin · Paper &amp; Folia</span>
+          </div>
+          <a href="https://github.com/Rosaaalfi/MMOBlock-Rework" target="_blank" rel="noopener"
+             style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;transition:background 0.2s">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="#94a3b8"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+
+        <p class="desc" style="color:#94a3b8;font-size:0.8rem;line-height:1.55;margin:0 0 0.7rem">
+          Modular Minecraft plugin for Paper & Folia servers. Full NMS abstraction supporting MC 1.19.4–1.21.x, custom block systems, multi-database, and a clean developer API.
+        </p>
+
+        <div class="feat-list" style="display:flex;flex-direction:column;gap:5px;margin-bottom:0.7rem">
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Cross-version NMS (1.19.4–1.21.x) + Folia thread-safe</span></div>
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>YAML blocks, mining, hologram, 3D model integrations</span></div>
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>H2 / MySQL / Redis + developer-friendly API</span></div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.7rem">
+          <span class="tag java">Java</span><span class="tag mc">Paper API</span><span class="tag mc">Folia</span><span class="tag">NMS</span><span class="tag">Gradle</span>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.6rem;border-top:1px solid rgba(30,41,59,0.8)">
+          <span style="font-size:0.7rem;color:#475569">⭐ 2 · v3.0.5</span>
+          <a href="https://github.com/Rosaaalfi/MMOBlock-Rework" target="_blank" rel="noopener" style="font-size:0.7rem;color:#60a5fa;text-decoration:none;font-weight:600">View Source →</a>
+        </div>
+      </div>
+
+      <!-- Genoviza Studio -->
+      <div class="pcard red">
+        <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:0.75rem">
+          <div style="width:40px;height:40px;border-radius:10px;background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-bottom:2px">
+              <span style="color:#fff;font-weight:700;font-size:0.95rem">Genoviza Studio</span>
+              <span class="tag web">Web App</span>
+            </div>
+            <span style="color:#475569;font-size:0.7rem;white-space:nowrap">Marketplace · Rust Fullstack</span>
+          </div>
+          <a href="https://genovizastudio.com" target="_blank" rel="noopener"
+             style="width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0;text-decoration:none;transition:background 0.2s">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+
+        <p class="desc" style="color:#94a3b8;font-size:0.8rem;line-height:1.55;margin:0 0 0.7rem">
+          Full-stack marketplace built in Rust — Yew (WASM) frontend, Actix-Web backend, protected by Anubis WAF in Go for bot &amp; DDoS mitigation.
+        </p>
+
+        <div class="feat-list" style="display:flex;flex-direction:column;gap:5px;margin-bottom:0.7rem">
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Rust + WASM frontend via Yew — zero JS overhead</span></div>
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Actix-Web async REST backend, high-performance</span></div>
+          <div class="fr"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#f87171" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg><span>Anubis WAF: PoW challenge, rate limiting, bot block</span></div>
+        </div>
+
+        <div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:0.7rem">
+          <span class="tag rust">Rust</span><span class="tag rust">Yew (WASM)</span><span class="tag rust">Actix-Web</span><span class="tag go">Go</span><span class="tag waf">Anubis WAF</span>
+        </div>
+
+        <div style="display:flex;align-items:center;justify-content:space-between;padding-top:0.6rem;border-top:1px solid rgba(30,41,59,0.8)">
+          <span style="display:flex;align-items:center;gap:5px;font-size:0.7rem;color:#475569">
+            <span style="width:6px;height:6px;border-radius:50%;background:#22c55e;display:inline-block"></span>Live Production
+          </span>
+          <a href="https://genovizastudio.com" target="_blank" rel="noopener" style="font-size:0.7rem;color:#f87171;text-decoration:none;font-weight:600">Visit Site →</a>
+        </div>
+      </div>
+
+    </div><!-- /workGrid -->
+  </div>
+</div>
+
+<!-- ══════════════════════ PANEL 2: ABOUT ══════════════════════ -->
+<div class="panel" id="about">
+  <div class="pc">
+    <div class="sdiv"><div class="ln"></div><span>About Me</span><div class="ln"></div></div>
+
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start">
+      <div>
+        <p style="color:#cbd5e1;font-size:1rem;line-height:1.7;margin:0 0 0.75rem">
+          I'm <strong style="color:#fff">Aniko</strong>, a self-driven developer working at the intersection of systems programming and product engineering.
+        </p>
+        <p style="color:#64748b;font-size:0.85rem;line-height:1.7;margin:0 0 1rem">
+          From low-level NMS hacking in Minecraft plugins to production-grade Rust full-stack apps with WAF protection — I enjoy the full spectrum. I care about performance, correctness, and shipping things that last.
+        </p>
+        <div style="display:flex;flex-wrap:wrap;gap:6px">
+          <span class="sp">☕ Java / JVM</span>
+          <span class="sp">🦀 Rust</span>
+          <span class="sp">🐹 Go</span>
+          <span class="sp">⛏️ Minecraft Dev</span>
+          <span class="sp">🌐 WebAssembly</span>
+          <span class="sp">🗄️ MySQL / Redis</span>
+          <span class="sp">🔒 WAF / Security</span>
+          <span class="sp">📦 Gradle / Maven</span>
+        </div>
+      </div>
+
+      <div class="stats-col" style="display:flex;flex-direction:column;gap:0.65rem">
+        <div class="stat-box" style="border-radius:1rem;border:1px solid rgb(30,41,59);background:rgba(15,23,42,0.5);padding:0.85rem 1rem">
+          <div style="font-size:1.6rem;font-weight:700;color:#fff;margin-bottom:2px">2</div>
+          <div style="font-size:0.78rem;color:#64748b">Major projects shipped</div>
+        </div>
+        <div class="stat-box" style="border-radius:1rem;border:1px solid rgb(30,41,59);background:rgba(15,23,42,0.5);padding:0.85rem 1rem">
+          <div style="font-size:1.3rem;font-weight:700;color:#fff;margin-bottom:2px">1.19 → 1.21</div>
+          <div style="font-size:0.78rem;color:#64748b">Minecraft version coverage (MMOBlock)</div>
+        </div>
+        <div class="stat-box" style="border-radius:1rem;border:1px solid rgb(30,41,59);background:rgba(15,23,42,0.5);padding:0.85rem 1rem">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px">
+            <span style="width:8px;height:8px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:pdot 2s ease-in-out infinite;display:inline-block"></span>
+            <span style="font-size:0.82rem;font-weight:600;color:#fff">Open to collab</span>
+          </div>
+          <div style="font-size:0.75rem;color:#64748b">Plugin dev, Rust/Go backend, fullstack</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════ PANEL 3: CONTACT ══════════════════════ -->
+<div class="panel" id="contact">
+  <div class="pc">
+    <div class="sdiv"><div class="ln"></div><span>Get In Touch</span><div class="ln"></div></div>
+
+    <div class="two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start">
+      <div class="left-info">
+        <h4 style="color:#fff;font-size:1.7rem;font-weight:700;letter-spacing:-0.03em;line-height:1.2;margin:0 0 0.75rem">
+          Let's build something<br><span style="color:#3b82f6">together.</span>
+        </h4>
+        <p style="color:#64748b;font-size:0.85rem;line-height:1.7;margin:0 0 1.25rem">
+          Whether it's a Minecraft plugin, a Rust backend, or an ambitious full-stack project — I'm open to collaboration, contracts, and interesting problems.
+        </p>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a href="https://github.com/Rosaaalfi" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#94a3b8;transition:color 0.2s">
+            <div style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:500">github.com/Rosaaalfi</span>
+          </a>
+          <a href="https://genovizastudio.com" target="_blank" rel="noopener"
+             style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#94a3b8;transition:color 0.2s">
+            <div style="width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+            </div>
+            <span style="font-size:0.82rem;font-weight:500">genovizastudio.com</span>
+          </a>
+        </div>
+      </div>
+
+      <form onsubmit="doContact(event)" style="display:flex;flex-direction:column;gap:10px">
+        <input type="text" placeholder="Your name" class="ifield" required>
+        <input type="email" placeholder="Email address" class="ifield" required>
+        <textarea placeholder="Tell me about your project..." class="ifield" rows="4" required></textarea>
+        <button type="submit" id="submitBtn"
+          style="background:#2563eb;color:#fff;font-weight:600;padding:10px 20px;border-radius:9px;border:none;cursor:pointer;font-size:0.85rem;transition:background 0.2s;font-family:inherit">
+          Send Message →
+        </button>
+      </form>
+    </div>
+
+    <div class="foot-bar" style="margin-top:2rem;padding-top:1rem;border-top:1px solid rgba(30,41,59,0.6);display:flex;justify-content:space-between;align-items:center">
+      <span style="font-size:0.7rem;color:#334155">© 2026 Aniko · CHYXEL.DEV</span>
+      <span style="font-size:0.7rem;color:#334155">Built with ❤️ &amp; Rust</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /hc -->
+</div><!-- /hv -->
+
 <script>
-// Mobile scroll helper
-function scrollToSection(id) {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth' });
-}
+(function() {
+  var PANELS = ['home','work','about','contact'];
+  var isMobile = function() { return window.innerWidth < 768; };
 
-// Horizontal scroll via nav links (desktop)
-document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', e => {
-    const id = link.getAttribute('href').slice(1);
-    const target = document.getElementById(id);
-    if (!target) return;
-    const vp = document.getElementById('horizontal-scroll');
-    if (vp && window.innerWidth >= 768) {
-      e.preventDefault();
-      const sections = Array.from(document.querySelectorAll('header[id],section[id],footer[id]'));
-      const idx = sections.findIndex(s => s.id === id);
-      if (idx >= 0) {
-        vp.scrollTo({ left: idx * window.innerWidth, behavior: 'smooth' });
-      }
+  // ── Desktop: scroll panel by index ──
+  function goToIdx(idx) {
+    if (isMobile()) {
+      var el = document.getElementById(PANELS[idx]);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      var hv = document.getElementById('hv');
+      if (hv) hv.scrollTo({ left: idx * window.innerWidth, behavior: 'smooth' });
     }
-  });
-});
+    setActive(idx);
+  }
 
-function handleContact(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('button[type=submit]');
-  btn.textContent = 'Message sent! ✓';
-  btn.disabled = true;
-  btn.classList.replace('bg-blue-600', 'bg-green-600');
-  btn.classList.replace('hover:bg-blue-500', 'hover:bg-green-600');
-}
+  // ── Highlight active dot/nav link ──
+  function setActive(idx) {
+    document.querySelectorAll('.mob-nav button').forEach(function(b,i) {
+      b.classList.toggle('active', i === idx);
+    });
+  }
+
+  // ── Wire all nav links (desktop top nav + mobile dots) ──
+  document.querySelectorAll('[data-idx]').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      goToIdx(parseInt(this.getAttribute('data-idx')));
+    });
+  });
+
+  // ── Track scroll position to update active state ──
+  function onScroll() {
+    if (isMobile()) {
+      // vertical: find which panel is most in viewport
+      var best = 0, bestVis = -1;
+      PANELS.forEach(function(id, i) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        var r = el.getBoundingClientRect();
+        var vis = Math.min(r.bottom, window.innerHeight) - Math.max(r.top, 0);
+        if (vis > bestVis) { bestVis = vis; best = i; }
+      });
+      setActive(best);
+    } else {
+      var hv = document.getElementById('hv');
+      if (!hv) return;
+      var idx = Math.round(hv.scrollLeft / window.innerWidth);
+      setActive(Math.max(0, Math.min(idx, PANELS.length - 1)));
+    }
+  }
+
+  var hv = document.getElementById('hv');
+  if (hv) hv.addEventListener('scroll', onScroll, { passive: true });
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ── Contact form ──
+  window.doContact = function(e) {
+    e.preventDefault();
+    var btn = document.getElementById('submitBtn');
+    btn.textContent = 'Message sent! ✓';
+    btn.disabled = true;
+    btn.style.background = '#16a34a';
+  };
+})();
 </script>
 
 </body>
