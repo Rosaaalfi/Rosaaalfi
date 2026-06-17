@@ -29,6 +29,8 @@
 
 <p>
   <img src="https://img.shields.io/badge/Rust-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/C++-000?style=for-the-badge&logo=c%2B%2B" />
+  <img src="https://img.shields.io/badge/C%23-000?style=for-the-badge&logo=c-sharp" />
   <img src="https://img.shields.io/badge/Java-000?style=for-the-badge&logo=openjdk" />
   <img src="https://img.shields.io/badge/Kotlin-000?style=for-the-badge&logo=kotlin" />
   <img src="https://img.shields.io/badge/TypeScript-000?style=for-the-badge&logo=typescript" />
@@ -38,7 +40,17 @@
 ### Tools & Frameworks
 
 <p>
-  <img src="https://img.shields.io/badge/Node.js-000?style=for-the-badge&logo=node.js" />
+  <img src="https://img.shields.io/badge/Spring_Boot-000?style=for-the-badge&logo=spring-boot" />
+  <img src="https://img.shields.io/badge/Quarkus-000?style=for-the-badge&logo=quarkus" />
+  <img src="https://img.shields.io/badge/.NET-000?style=for-the-badge&logo=.net" />
+  <img src="https://img.shields.io/badge/Actix_Web-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/Leptos-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/egui-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/Zig-000?style=for-the-badge&logo=zig" />
+  <img src="https://img.shields.io/badge/Cargo-000?style=for-the-badge&logo=rust" />
+  <img src="https://img.shields.io/badge/GCC-000?style=for-the-badge&logo=gnu-compiler-collection" />
+  <img src="https://img.shields.io/badge/GraalVM-000?style=for-the-badge&logo=graalvm" />
+  <img src="https://img.shields.io/badge/Binaryen-000?style=for-the-badge&logo=webassembly" />
   <img src="https://img.shields.io/badge/Git-000?style=for-the-badge&logo=git" />
   <img src="https://img.shields.io/badge/GitHub-000?style=for-the-badge&logo=github" />
   <img src="https://img.shields.io/badge/Linux-000?style=for-the-badge&logo=linux" />
