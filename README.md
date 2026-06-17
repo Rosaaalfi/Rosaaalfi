@@ -31,7 +31,6 @@
   <img src="https://img.shields.io/badge/Rust-000?style=for-the-badge&logo=rust" />
   <img src="https://img.shields.io/badge/Java-000?style=for-the-badge&logo=openjdk" />
   <img src="https://img.shields.io/badge/Kotlin-000?style=for-the-badge&logo=kotlin" />
-  <img src="https://img.shields.io/badge/JavaScript-000?style=for-the-badge&logo=javascript" />
   <img src="https://img.shields.io/badge/TypeScript-000?style=for-the-badge&logo=typescript" />
   <img src="https://img.shields.io/badge/Python-000?style=for-the-badge&logo=python" />
 </p>
@@ -66,7 +65,7 @@
 
 <img
   width="100%"
-  src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Rosaaalfi&theme=github_dark"
+  src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Rosaaalfi&theme=github_dark&exclude=html"
 />
 
 </td>
@@ -75,7 +74,7 @@
 
 <img
   width="100%"
-  src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Rosaaalfi&theme=github_dark"
+  src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Rosaaalfi&theme=github_dark&exclude=html"
 />
 
 </td>
